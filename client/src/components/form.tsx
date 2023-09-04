@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Form:React.FC = () => {
+
+    //input for serial number and sku
     const [serialNumberInput, setSerialNumberInput] = useState<string>('');
     const [skuNumberInput, setSkuNumberInput] = useState<string>('');
 
+    // Define state variables to track the success of serial number and SKU operations.
     const [isSerialNSuccessful, setIsSerialNSuccessful] = useState<boolean>(false);
     const [isSkuSuccessful, setIsSkuSuccessful] = useState<boolean>(false);
 
+    // Function to send serial number data to the API and handle success or failure.
     const sendDataToAPiSerialN = async () => {
         setIsSerialNSuccessful(false)
         try {
@@ -17,13 +21,11 @@ const Form:React.FC = () => {
             if (response.status === 200) {
                 setIsSerialNSuccessful(true)
             }
-            console.log(response)
         } catch (error) {
-            console.log(error)
             setIsSerialNSuccessful(false)
         } 
     }
-
+    // Function to send sku data to the API and handle success or failure.
     const sendDataToAPiSku = async () => {
         setIsSkuSuccessful(false)
         try {
@@ -33,9 +35,7 @@ const Form:React.FC = () => {
             if (response.status === 200) {
                 setIsSkuSuccessful(true)
             }
-            console.log(response)
         } catch (error) {
-            console.log(error)
             setIsSkuSuccessful(false)
         } 
     }
@@ -46,6 +46,7 @@ const Form:React.FC = () => {
             sendDataToAPiSku()
         }
       }, [skuNumberInput]);
+
       //serial number search bar
       useEffect(() => {
         if (serialNumberInput.trim() !== '') {
