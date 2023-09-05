@@ -13,6 +13,7 @@ const Form:React.FC = () => {
 
     // Function to send serial number data to the API and handle success or failure.
     const sendDataToAPiSerialN = async () => {
+    
         setIsSerialNSuccessful(false)
         try {
             const response = await axios.post("http://localhost:3000/product/serial-number", {
@@ -21,6 +22,7 @@ const Form:React.FC = () => {
             if (response.status === 200) {
                 setIsSerialNSuccessful(true)
             }
+
         } catch (error) {
             setIsSerialNSuccessful(false)
         } 
@@ -69,12 +71,11 @@ const Form:React.FC = () => {
         }
     }, [isSkuSuccessful])
 
-
     return (
         <div className="w-full h-[70vh] flex justify-center items-center">
             <form className="flex gap-x-5">
                 <label htmlFor="">Serial Number:</label>
-                <input type="text" className="outline-1 outline"
+                <input type="text" className={`outline-1 outline `}
                     autoFocus
                     id="serial-number"
                     value={serialNumberInput}

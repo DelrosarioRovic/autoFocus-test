@@ -61,7 +61,6 @@ app.post('/product/sku', async(req, res) => {
 
   const prod = await Product.find({ sku })
 
-
   if (prod.length === 0) {
     return res.status(404).json({message: "No product found!"});
   }
